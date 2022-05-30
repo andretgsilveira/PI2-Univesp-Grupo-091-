@@ -27,15 +27,19 @@
             <img src="../static/imagens/logo.svg" class="logo d-block " alt="imagem 1">
           </div>
 
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link text-white" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/contato">Contato</a>
-            </li>
-          </ul>
-
+          <nav id="nav"> 
+            <button id="btn-mobile" aria-label="Abrir Menu" alt="Menu">Menu</button>
+            <span id="hamburger"></span>
+            <ul id="menu">
+              <li class="menu-item">
+                <a class="nav-link text-white" aria-current="page" href="/" alt="Link pagina home">Home</a>
+              </li>
+              <li class="menu-item">
+                <a class="nav-link text-white" href="/contato" alt="Link pagina de contato">Contato</a>
+              </li>
+            </ul>
+          </nav>
+          
         </div>
       </nav>
 
@@ -53,7 +57,7 @@
 
     </footer>
 
-
+    <script src="../static/js/botaoMenu.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 

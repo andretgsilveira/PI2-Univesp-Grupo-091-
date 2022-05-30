@@ -5,6 +5,12 @@
 body{
     background-color: rgb(33, 33, 33);
 }
+
+.navbar, .container-fluid {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
 .carousel {
     padding: 0;
 }
@@ -13,7 +19,96 @@ body{
     width: 150px;
 }
 
-.container{
+#btn-mobile{
+    display: none;
+}
+
+#menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+}
+@media (max-width: 600px) {
+    #btn-mobile{
+        display: block;
+    }
+    #menu { 
+        display: flex;
+        visibility: hidden;        
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        top:100%;
+        right: 0px;
+        background: rgba(255, 165, 0, 0.6);
+        padding: 0px;
+        margin: 0px;
+        z-index:9999;
+        overflow-y: hidden;
+        transition: height .6s;
+        height: 0px;
+    }
+    #nav.active #menu{
+        visibility: visible;
+        height: 84px;
+        overflow-y: auto;
+    }
+    #nav.active .menu-item {
+        border-bottom: 2px solid rgba(0,0,0,0.05);
+    }
+
+    #btn-mobile {
+        display: flex;
+        color: white;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    #nav {
+        padding: 10px;
+        width: 90px;
+        display: flex;
+        justify-content: space-between;
+    }
+    #hamburger { 
+        margin-top: 2px;
+        width: 20px;
+        background: none;
+        color: white;
+        border-top: 2px solid;
+    }
+    
+    #hamburger::after, #hamburger::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: currentColor;
+        margin-top: 5px;
+        transition: .6s;
+        position: relative;
+    }
+    
+    #nav.active #hamburger {
+        border-top-color: transparent;
+        
+    }
+    
+    #nav.active #hamburger::before {
+        transform: rotate(135deg);
+    }
+    
+    #nav.active #hamburger::after {
+        transform: rotate(-135deg);
+        top: -7px;
+    }
+
+}
+
+.gallery-container{
     max-width: 100%;
     display: flex;
     flex-direction: row;
@@ -22,7 +117,7 @@ body{
     justify-content: space-between;
 }
 
-.item {
+.gallery-item {
     box-sizing: border-box;
     flex: 1 1 300px;
     margin: 10px;
