@@ -54,7 +54,43 @@
   </div>
 </div>
 
+<!-----Comentarios------->
 
-      
+<div class="row justify-content-between">
+  <div id=avalpessoal class="col-sm-3 col-xs-12">
+    <div class="card-body text-center"> 
+      <form action="/rating" METHOD="POST" class="comment-box text-center">
+        <h5>Deixe sua Avaliação:</h5>
+        <h4>
+          <div class="rating col-xs-sm-12">
+            <input type="radio" name="rating" value="5" id="5">
+            <label for="5">☆</label> 
+
+            <input type="radio" name="rating" value="4" id="4">
+            <label for="4">☆</label> 
+
+            <input type="radio" name="rating" value="3" id="3">
+            <label for="3">☆</label> 
+
+            <input type="radio" name="rating" value="2" id="2">
+            <label for="2">☆</label> 
+
+            <input type="radio" name="rating" value="1" id="1">
+            <label for="1">☆</label> 
+          </div>
+        </h4>
+
+        <br>
+
+        <div class="comment-area">
+          <textarea class="form-control comment" placeholder="Escreva aqui seu comentário..." rows="4" name="comment" ></textarea>
+        </div>
+
+        <div class="text-center mt-4">
+          <button class="botao"> Enviar </button>
+        </div>
+      </form>
+    </div>
+  </div>
 
 {% endblock %}
