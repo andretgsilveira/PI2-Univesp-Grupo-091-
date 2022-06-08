@@ -26,12 +26,13 @@ body{
 }
 
 .container-logo > .logo {
-    width: 12vh;
+    width: 10vh;
     border-radius: 50%;
 }
 
 .container-logo > h1 {
-    font-size: 1.5rem;
+    margin: 10px;
+    font-size: 1.2rem;
 }
 
 .carousel {
