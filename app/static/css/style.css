@@ -6,29 +6,34 @@ body{
     background-color: rgb(33, 33, 33);
 }
 
+.navbar{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
 .container-logo {
+    width: fit-content;
+    height: fit-content;
     display: flex;
     flex-direction: row;
     color: white;
     align-items: center;
-    margin: 10px;
+    justify-content: space-between;
+    padding: 10px;
 }
 
 .container-logo > .logo {
-    width: 12%;
+    width: 12vh;
     border-radius: 50%;
 }
 
 .container-logo > h1 {
     font-size: 1.5rem;
-    margin: 10px;
 }
 
-.navbar, .container-fluid {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
 .carousel {
     padding: 0;
 }
