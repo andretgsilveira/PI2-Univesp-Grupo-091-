@@ -6,6 +6,24 @@ body{
     background-color: rgb(33, 33, 33);
 }
 
+.container-logo {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    align-items: center;
+    margin: 10px;
+}
+
+.container-logo > .logo {
+    width: 12%;
+    border-radius: 50%;
+}
+
+.container-logo > h1 {
+    font-size: 1.5rem;
+    margin: 10px;
+}
+
 .navbar, .container-fluid {
     width: 100%;
     margin: 0;
