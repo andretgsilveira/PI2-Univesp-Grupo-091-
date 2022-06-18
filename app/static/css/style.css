@@ -39,6 +39,18 @@ body{
     padding: 0;
 }
 
+.carousel-item {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    max-height: 75%;
+}
+.carousel-item > img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+}
 .logo {
     width: 150px;
 }
@@ -181,4 +193,26 @@ body{
 
     background-color: #3e8a41; /* Green */
 
+}
+
+footer {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container-footer {
+    display: flex;
+    flex-direction: row;
+}
+
+#instagram {
+    display: flex;
+    align-items: center;
+}
+
+#instagram > img{
+    width: 50px;
 }
