@@ -7,18 +7,22 @@ from werkzeug.utils import redirect
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///rating.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://yqiuysyngegqzn:068cfd3a2f749b8c09fb2bcfc6e7739a3ab9cd9b69f7c0cdb8617d74770e86c7@ec2-44-197-128-108.compute-1.amazonaws.com:5432/ddlmbptv8chm8o'
 
     db = SQLAlchemy(app)
 
-    class Rating(db.Model):
+    class Images(db.Model):
         id = db.Column(db.Integer, primary_key=True)
-        star = db.Column(db.Integer)
-        evaluation = db.Column(db.String(500))
+        path = db.Column(db.String(500))
+        alt = db.Column(db.String(500))
         date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
         def __repr__(self):
             return '<ID %r>' %self.id
+
+    @app.route('/testeDB')
+    def testDB():
+        return "Hey!"
 
     @app.route('/manage')
     def manage():

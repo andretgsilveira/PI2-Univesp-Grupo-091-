@@ -43,7 +43,7 @@ body{
     padding-left: 15px;
     padding-right: 15px;
     width: 100%;
-    max-height: 75%;
+    height: 75vh;
 }
 .carousel-item > img {
     display: block;
