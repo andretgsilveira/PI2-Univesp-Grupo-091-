@@ -20,7 +20,7 @@ def create_app():
         def __repr__(self):
             return '<ID %r>' %self.id
 
-    @app.route('/testeDB')
+    @app.route('/testeDB', methods=["GET"])
     def testDB():
         return "Hey!"
 
