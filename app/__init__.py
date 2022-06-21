@@ -26,19 +26,13 @@ def create_app():
 
     @app.route('/manage')
     def manage():
-        evaluations = Rating.query.order_by(Rating.date_created)
-        return render_template('manage.html', evaluations=evaluations)
+        pass
+        return 
 
     @app.route('/delete/<int:id>')
     def delete(id):
-        commentDelete = Rating.query.get_or_404(id)
-        
-        try:
-            db.session.delete(commentDelete)
-            db.session.commit()
-            return redirect('/manage')
-        except:
-            return "Não foi possivel deletar o comentario"
+        pass
+        return
 
     @app.route('/contato')
     def contato():
@@ -46,29 +40,11 @@ def create_app():
 
     @app.route('/')
     def index():
-        ratingAvg = db.session.query(func.avg(Rating.star)).scalar()
-        ratingLength = db.session.query(func.max(Rating.id)).scalar()
-        evaluations = Rating.query.order_by(Rating.date_created)
-        return render_template('index.html', evaluations=evaluations, ratingLength=ratingLength, ratingAvg=ratingAvg)
+        return render_template('index.html')
 
     @app.route('/rating', methods=["POST", "GET"])
     def rating():
-        if request.method == "POST":                
-            star_rating = request.form.get("rating")
-            comment = request.form.get("comment")
-            new_rating = Rating(star = star_rating, evaluation = comment )
-        
-            try:
-                db.session.add(new_rating)
-                db.session.commit()
-
-                return redirect('/')
-            except:
-                return "Erro ao adicionar ao banco de dados"
-        else:
-            return redirect('/')
+        pass
+        return redirect('/')
 
     return app
-# Retire o comentario para testar via Pycharm
-# test = create_app()
-# test.run()
