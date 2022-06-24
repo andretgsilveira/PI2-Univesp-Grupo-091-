@@ -20,18 +20,26 @@ def create_app():
         def __repr__(self):
             return '<ID %r>' %self.id
 
-    @app.route('/testeDB', methods=["GET"])
+    @app.route('/testeDB', methods=["POST", "GET"])
     def testDB():
-        return "Hey!"
+        if request.method == 'POST':
+            alt = request.form.get['descricao']
 
+            new_image = Images(path = "teste", alt = alt)
+            
+            try:
+                db.session.add(new_image)
+                db.session.commit()
 
+                return redirect('/')
+            except:
+                return "Erro ao adicionar ao banco de dados"
+        else:
+            return redirect('/')
 
-
-
-    @app.route('/manage')
+    @app.route('/cadastro')
     def manage():
-        pass
-        return 
+        return  render_template('cadastro.html')
 
     @app.route('/delete/<int:id>')
     def delete(id):

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="/rating" METHOD="POST" class="comment-box text-center">
+
+  <div class="comment-area">
+    <textarea class="form-control comment" placeholder="Escreva aqui a descrição da imagem" name="descricao" ></textarea>
+  </div>
+
+  <div class="text-center mt-4">
+    <button class="botao"> Enviar </button>
+  </div>
+</form>
+
+{% endblock %}
