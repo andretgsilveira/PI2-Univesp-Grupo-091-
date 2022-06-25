@@ -20,10 +20,10 @@ def create_app():
         def __repr__(self):
             return '<ID %r>' %self.id
 
-    @app.route('/testeDB', methods=["POST", "GET"])
+    @app.route('/submit', methods=["POST"])
     def testDB():
         if request.method == 'POST':
-            alt = request.form.get['descricao']
+            alt = request.form['descricao']
 
             new_image = Images(path = "teste", alt = alt)
             
