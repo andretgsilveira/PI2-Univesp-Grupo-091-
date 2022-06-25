@@ -34,7 +34,7 @@ def create_app():
 
                 return redirect('/')
             except:
-                return "Erro ao adicionar ao banco de dados"
+                return f"Erro ao adicionar ao banco de dados {alt}"
         else:
             return redirect('/')
 
