@@ -12,6 +12,7 @@ def create_app():
     db = SQLAlchemy(app)
 
     class Images(db.Model):
+        __tablename__ = 'tb_images'
         id = db.Column(db.Integer, primary_key=True)
         path = db.Column(db.String(500))
         alt = db.Column(db.String(500))
