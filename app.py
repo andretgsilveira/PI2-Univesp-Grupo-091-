@@ -43,7 +43,7 @@ class Imagens(db.Model):
         self.nome_do_arquivo = nome_do_arquivo
 
 #-----Criar db------
-db.create_all()
+#db.create_all()
 #-------------------
 
 @app.route('/')
