@@ -6,8 +6,8 @@ import os
 import re
 
 uri = os.getenv("DATABASE_URL")
-if uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://", 1)
+if uri.startswith("postgres:\\"):
+    uri = uri.replace("postgres:\\", "postgresql:\\", 1)
 
 DIRETORIO = 'C:\\Users\\andre\\Desktop\\PI2-Univesp-Grupo-091-\\static\\imagens\\Photos-001'
 DIRETORIO_RELATIVO = '..\static\imagens\Photos-001'
