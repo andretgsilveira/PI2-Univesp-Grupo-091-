@@ -2,12 +2,11 @@ from flask import Flask, jsonify, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
-
 import re
 
 uri = os.getenv("DATABASE_URL")
-if uri.startswith("postgres:\\"):
-    uri = uri.replace("postgres:\\", "postgresql:\\", 1)
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
 
 DIRETORIO = 'C:\\Users\\andre\\Desktop\\PI2-Univesp-Grupo-091-\\static\\imagens\\Photos-001'
 DIRETORIO_RELATIVO = '..\static\imagens\Photos-001'
@@ -21,7 +20,7 @@ if ENV == 'dev':
     app.config['SQLALCHEMY_DATABASE_URI'] = ''
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://yqiuysyngegqzn:068cfd3a2f749b8c09fb2bcfc6e7739a3ab9cd9b69f7c0cdb8617d74770e86c7@ec2-44-197-128-108.compute-1.amazonaws.com:5432/ddlmbptv8chm8o'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
