@@ -103,7 +103,7 @@ def post_imagem():
             upload_result = cloudinary.uploader.upload(imagem)
             app.logger.info(upload_result)
             caminho = upload_result['url']
-            caminho_relativo = ''
+            caminho_relativo = upload_result['url']
 
         
         if tipo == 'image/png' or tipo == 'image/jpeg':
