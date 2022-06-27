@@ -1,12 +1,19 @@
 from flask import Flask, jsonify, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
 from datetime import datetime
+import cloudinary
+import cloudinary.uploader
 import os
 
 DIRETORIO = 'C:\\Users\\andre\\Desktop\\PI2-Univesp-Grupo-091-\\static\\imagens\\Photos-001'
 DIRETORIO_RELATIVO = '..\static\imagens\Photos-001'
+load_dotenv()
 
 app = Flask(__name__)
+
+cloudinary.config(cloud_name = os.getenv('CLOUD_NAME'), api_key=os.getenv('API_KEY'), 
+    api_secret=os.getenv('API_SECRET'))
 
 ENV = 'dev'
 print( os.environ.get('DATABASE_URL', ''))
@@ -73,45 +80,46 @@ def lista_imagens():
 
 @app.route('/arquivos', methods=['POST'])
 def post_imagem():
+
+    cloudinary.config(cloud_name = os.getenv('CLOUD_NAME'), api_key=os.getenv('API_KEY'), 
+        api_secret=os.getenv('API_SECRET'))
+    upload_result = None
+
     if request.method == 'POST':
-        def post(caminho, nome_do_arquivo, relative_path):
-            
-                alt = request.form['descricao']
 
-                new_image = Imagens(path = caminho, relative_path = relative_path, descricao= alt, nome_do_arquivo= nome_do_arquivo)
-                
-                try:
-                    db.session.add(new_image)
-                    db.session.commit()
-
-                    return True
-                except:
-                    return False
-
-        imagem = request.files.get('imagem')
+        imagem = request.files['imagem']
+        alt = request.form['descricao']
         nome_do_arquivo = imagem.filename
         tipo = imagem.mimetype
-        caminho = os.path.join(DIRETORIO,  nome_do_arquivo)
-        caminho_relativo = os.path.join(DIRETORIO_RELATIVO,  nome_do_arquivo)
-        for nome_da_imagem_no_diretorio in os.listdir(DIRETORIO):
-            if nome_da_imagem_no_diretorio == nome_do_arquivo:
-                return render_template('cadastro.html', message='Arquivo igual ou com mesmo nome, verifique e tente novamente!')
 
-        match tipo:
-            case 'image/png':
-                if post(caminho, nome_do_arquivo, caminho_relativo):
-                    imagem.save(os.path.join(DIRETORIO, nome_do_arquivo))
-                    return render_template('cadastro.html', message='Arquivo enviado com sucesso!')
-                else:
-                    return render_template('cadastro.html', message='Falha')
-            case 'image/jpeg':
-                if post(caminho, nome_do_arquivo, caminho_relativo):
-                    imagem.save(os.path.join(DIRETORIO, nome_do_arquivo))
-                    return render_template('cadastro.html', message='Arquivo enviado com sucesso!')
-                else:
-                    return render_template('cadastro.html', message='Falha')
-            case default:
-                return render_template('cadastro.html', message='Tipo de arquivo incorreto, selecione uma imagem png ou jpeg!', tipo=imagem.mimetype)
+        if ENV == 'dev':
+            caminho = os.path.join(DIRETORIO,  nome_do_arquivo)
+            caminho_relativo = os.path.join(DIRETORIO_RELATIVO,  nome_do_arquivo)
+
+            for nome_da_imagem_no_diretorio in os.listdir(DIRETORIO):
+                if nome_da_imagem_no_diretorio == nome_do_arquivo:
+                    return render_template('cadastro.html', message='Arquivo igual ou com mesmo nome, verifique e tente novamente!')
+
+            imagem.save(os.path.join(DIRETORIO, nome_do_arquivo))
+        else:
+            upload_result = cloudinary.uploader.upload(imagem)
+            app.logger.info(upload_result)
+            caminho = upload_result['url']
+            caminho_relativo = ''
+
+        
+        if tipo == 'image/png' or tipo == 'image/jpeg':
+  
+            new_image = Imagens(path = caminho, relative_path = caminho_relativo, descricao= alt, nome_do_arquivo= nome_do_arquivo)
+            
+            try:
+                db.session.add(new_image)
+                db.session.commit()
+                return render_template('cadastro.html', message='Arquivo enviado com sucesso!')
+            except:
+                return render_template('cadastro.html', message='Falha ao cadastrar o arquivo no DB!')
+        else:
+            return render_template('cadastro.html', message='Tipo de arquivo incorreto, selecione uma imagem png ou jpeg!', tipo=imagem.mimetype)
 
 
 @app.route('/delete/<int:id>')
