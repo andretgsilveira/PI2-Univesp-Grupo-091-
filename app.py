@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from dotenv import load_dotenv
 from datetime import datetime
 import cloudinary
 import cloudinary.uploader
@@ -8,7 +7,6 @@ import os
 
 DIRETORIO = 'C:\\Users\\andre\\Desktop\\PI2-Univesp-Grupo-091-\\static\\imagens\\Photos-001'
 DIRETORIO_RELATIVO = '..\static\imagens\Photos-001'
-load_dotenv()
 
 app = Flask(__name__)
 
