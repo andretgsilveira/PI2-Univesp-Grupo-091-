@@ -124,12 +124,16 @@ def post_imagem():
 def delete(id):
     imagemDelete = Imagens.query.get_or_404(id)
 
-    if os.path.exists(imagemDelete.path):
-        os.remove(imagemDelete.path)
-    else:
-        print("The file does not exist")
-        return redirect('/cadastro')
 
+    if ENV == 'dev':
+        if os.path.exists(imagemDelete.path):
+            os.remove(imagemDelete.path)
+        else:
+            print("The file does not exist")
+            return redirect('/cadastro')
+    else:
+        pass
+        #cloudinary.uploader.destroy(imagemDelete)
 
     '''------db-------'''
     try:
