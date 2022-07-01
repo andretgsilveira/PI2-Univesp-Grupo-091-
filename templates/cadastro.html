@@ -17,7 +17,7 @@
     </div>
 
   <div class="text-center mt-4">
-    <input type="submit" value="Enviar"> 
+    <input type="submit" class="btn-enviar" value="Enviar"> 
   </div>
 </form>
 
@@ -36,10 +36,10 @@
       {% for imagem in imagens %}
       <tr>
         <th scope="row">{{ imagem.id }}</th>
-        <td>{{ imagem.descricao }}</td>
-        <td>{{ imagem.nome_do_arquivo }}</td>
-        <td>{{ imagem.date_created }}</td>
-        <td><a href="/delete/{{ imagem.id }}" type="button" class="btn btn-secondary btn-sm">Delete</a></td>
+        <th>{{ imagem.descricao }}</th>
+        <th>{{ imagem.nome_do_arquivo }}</th>
+        <th>{{ imagem.date_created }}</th>
+        <th><a href="/delete/{{ imagem.id }}" type="button" class="btn btn-secondary btn-sm">Delete</a></th>
       </tr>
       {% endfor %}
     </tbody>

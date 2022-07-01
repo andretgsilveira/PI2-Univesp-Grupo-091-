@@ -133,6 +133,8 @@ def delete(id):
             return redirect('/cadastro')
     else:
         pass
+        '''----Em desenvolvimento. Necessario remover o nome do arquivo que esta ao final do caminho
+            para repasar para api do cloudinary----'''
         #cloudinary.uploader.destroy(imagemDelete)
 
     '''------db-------'''
