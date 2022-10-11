@@ -67,14 +67,22 @@ def manage():
 '-----------CRUD----------------'
 
 
-@app.route('/arquivos', methods=['GET'])
+@app.route('/api', methods=['GET'])
 def lista_imagens():
-    imagens = []
-    for nome_do_arquivo in os.listdir(DIRETORIO):
-        endereco_do_arquivo = os.path.join(DIRETORIO, nome_do_arquivo)
-        if(os.path.isfile(endereco_do_arquivo)):
-            imagens.append(nome_do_arquivo)
-    return jsonify(imagens)
+    imagens = Imagens.query.all()
+    json = []
+    for imagem in imagens:
+        json.append(
+            {'id': imagem.id,
+             'path': imagem.path,
+             'relative_path': imagem.relative_path,
+             'descricao': imagem.descricao,
+             'nome_do_arquivo': imagem.nome_do_arquivo,
+             'date_created': imagem.date_created
+             }
+        )
+
+    return jsonify(json)
 
 @app.route('/arquivos', methods=['POST'])
 def post_imagem():
